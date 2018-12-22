@@ -18,6 +18,18 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="SDLPongClone.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="pch.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{23B77948-D440-4390-8943-9C19555EFE58}</ProjectGuid>
@@ -110,9 +122,16 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets" Condition="Exists('..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets')" />
+    <Import Project="..\packages\sdl2.2.0.5\build\native\sdl2.targets" Condition="Exists('..\packages\sdl2.2.0.5\build\native\sdl2.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.redist.2.0.5\build\native\sdl2.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\sdl2.2.0.5\build\native\sdl2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.2.0.5\build\native\sdl2.targets'))" />
+  </Target>
 </Project>
